@@ -40,9 +40,15 @@ void OptimusPrime::New(const Nan::FunctionCallbackInfo<v8::Value>& info) {
 
 void OptimusPrime::IsThatAPrimeNumber(const Nan::FunctionCallbackInfo<v8::Value>& info) {
   OptimusPrime* obj = ObjectWrap::Unwrap<OptimusPrime>(info.Holder());
-  bool testResult = obj->isPrime(123);
+  if (!info[0]->IsNumber()) {
+    Nan::ThrowTypeError("argument must be a number!");
+    return;
+  }
 
-  info.GetReturnValue().Set(Nan::New(testResult));
+  int number = (int) info[0]->NumberValue();
+  bool result = obj->isPrime(number);
+
+  info.GetReturnValue().Set(Nan::New(result));
 }
 
 bool OptimusPrime::isPrime(int p) {

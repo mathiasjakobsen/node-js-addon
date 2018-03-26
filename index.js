@@ -9,7 +9,7 @@ for (var i = 0, len = 100000; i < len; i++) {
 console.timeEnd('Javascript');
 
 console.time('C++');
-for (var i = 0, len = 100000; i < len; i++) {
+for (var i = 0, len = 10000; i < len; i++) {
   optimusPrime.isThatAPrimeNumber(i)
 }
 console.timeEnd('C++');
